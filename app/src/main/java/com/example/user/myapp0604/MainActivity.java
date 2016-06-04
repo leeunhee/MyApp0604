@@ -9,48 +9,42 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-    EditText etInputName , etInputWeight, etInputHight;
-    double dWeight, dHight; // , resValue
-    TextView Resultvalue1;
-    String res, oNmae;
-    Button btn1;
-//    int nValue;
+    EditText etName,etWeight,etHeight;
+    TextView resultCalc;
+    String name,result;
+    double weight,height;
+    int test;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        btn1 = (Button) findViewById(R.id.nResBtn);
-        etInputWeight = (EditText) findViewById(R.id.inputWeight);
-        etInputHight = (EditText) findViewById(R.id.inputHight);
-        oNmae = etInputName.getText().toString();
-        dWeight = (Double.parseDouble(etInputWeight.getText().toString()));
-        dHight = (Double.parseDouble(etInputHight.getText().toString()));
-//        res1 = Integer.parseInt(etInputHight.getText().toString()); // 정수로 나온다
-        int nValue = (int) (dWeight / (dHight * dHight)) * 1000;
-        Resultvalue1 = (TextView) findViewById(R.id.outResult);
-        if(nValue > 30) {
-            res = "비만";
-        }
-        else if(nValue > 24) {
-            res = "과체중";
-        }
-        else if(nValue > 15) {
-            res = "저체중";
-        }
-        else if(nValue > 13) {
-            res = "마름";
-        }
-        else if(nValue > 10) {
-            res = "영양실조";
-        }
-        else
-            res = "소모증";
+ etName = (EditText) findViewById(R.id.name);
+        etWeight = (EditText) findViewById(R.id.weight);
+        etHeight = (EditText) findViewById(R.id.height);
+        name = etName.getText().toString();
+        weight = Double.parseDouble(etWeight.getText().toString());
+        height = Double.parseDouble(etHeight.getText().toString());
+        resultCalc = (TextView) findViewById(R.id.resultCalc);
+      //  test = Integer.parseInt(etHeight.getText().toString());
+        int idx = (int)(weight/(height * height)) * 10000;
 
-//        btn1.setOnTouchListener(ne );
-//        {
-//            Resultvalue1.setText(msg.toString());
-//        }
 
-        Resultvalue1.setText(etInputName.getText() + "님 결과res " + res);
+        if(idx >= 30){ //비만
+            result = "비만";
+        }else if(idx >= 24){ //과체중
+            result = "과체중";
+        }else if(idx >= 20){ //정상
+            result = "정상";
+        }else if(idx >= 15){ //저체중
+            result = "저체중";
+        }else if(idx >= 13){ //마름
+            result = "마름";
+        }else if(idx >= 10){ //영양실조
+            result = "영양실조";
+        }else{//소모증
+            result = "소모증";
+        }
+        resultCalc.setText(name+"님의 계산결과: " + result);
+
     }
 }
